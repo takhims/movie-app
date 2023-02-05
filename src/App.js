@@ -16,14 +16,14 @@ function App() {
     setErrorMessage(null);
     try {
       const response = await fetch(
-        `http://www.omdbapi.com/?s=${searchValue}&apikey=1538df62`
+        `https://www.omdbapi.com/?s=${searchValue}&apikey=1538df62`
       );
       const data = await response.json();
       if (data.Error) {
         setErrorMessage(data.Error);
       } else {
         const promiseList = data.Search.map((e) => {
-          return fetch(`http://www.omdbapi.com/?i=${e.imdbID}&apikey=1538df62`);
+          return fetch(`https://www.omdbapi.com/?i=${e.imdbID}&apikey=1538df62`);
         });
         let list = await Promise.all(promiseList);
         list = list.map((i) => i.json());
