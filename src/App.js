@@ -91,15 +91,15 @@ function App() {
           borderWidth="2px"
         >
           <Text>Please search for movie below:</Text>
-          <form onSubmit={(e) => { e.preventDefault(); fetchMovieData()}}><Input placeholder="Enter the Movie Name" onChange={onChange}/></form>
+          <form onSubmit={(e) => { e.preventDefault(); fetchMovieData()}}><Input marginTop="10px" placeholder="Enter the Movie Name" onChange={onChange}/></form>
 
           <Button
+            isDisabled={searchValue.length >4 ? false : true}
             position="center"
             colorScheme="blue"
             width="100%"
             onClick={fetchMovieData}
-            style={{ marginTop: 15 }}
-            disabled
+            marginTop="15px"
           >
             Search
           </Button>
