@@ -8,6 +8,7 @@ import {
   Text,
   ModalHeader,
   ModalContent,
+  Image
 } from "@chakra-ui/react";
 
 export default function Movie(props) {
@@ -20,12 +21,21 @@ export default function Movie(props) {
         onClose={props.onClose}
       >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>{props.movieDetails.Title}</ModalHeader>
+        <ModalContent display='flex' flexDirection='column' alignItems='center'>
+        <Image
+                height="300px"
+                marginTop='15px'
+                width="200px"
+                src={props.movieDetails.Poster}
+                alt="Green double couch with wooden legs"
+                borderRadius="lg"
+              />
+          <ModalHeader>{`${props.movieDetails.Title} (${props.movieDetails.Year})` }</ModalHeader>
+          
           <ModalCloseButton />
           <ModalBody>
-            <Text fontWeight="bold" mb="1rem">
-              You can scroll the content behind the modal
+            <Text  mb="1rem">
+              {props.movieDetails.Plot}
             </Text>
             
           </ModalBody>
@@ -34,7 +44,7 @@ export default function Movie(props) {
             <Button colorScheme="blue" mr={3} onClick={props.onClose}>
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            
           </ModalFooter>
         </ModalContent>
       </Modal>

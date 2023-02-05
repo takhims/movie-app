@@ -10,10 +10,13 @@ function App() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [sort, setSort] = useState(-1);
   const [movieDetails, setMovieDetails] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchMovieData = async () => {
     //console.log("Hekkllooo")
+    setIsLoading(true);
     setErrorMessage(null);
+    setMovieList([]);
     try {
       const response = await fetch(
         `https://www.omdbapi.com/?s=${searchValue}&apikey=1538df62`
@@ -21,6 +24,7 @@ function App() {
       const data = await response.json();
       if (data.Error) {
         setErrorMessage(data.Error);
+        setIsLoading(false)
       } else {
         const promiseList = data.Search.map((e) => {
           return fetch(`https://www.omdbapi.com/?i=${e.imdbID}&apikey=1538df62`);
@@ -37,6 +41,7 @@ function App() {
         });
 
         setMovieList(list);
+        setIsLoading(false)
       }
     } catch (error) {
       console.error(error);
@@ -99,10 +104,10 @@ function App() {
             Search
           </Button>
         </Box>
-        {movieList.length> 0?  <Button onClick={() => setSort(-1 * sort)}>{sort === 1 ? "ASC" : "DESC"}</Button> : null}
+        {movieList.length> 0?  <Button style={{marginTop:'15px'}}onClick={() => setSort(-1 * sort)}>{sort === 1 ? "ASC" : "DESC"}</Button> : null}
       </Container>
       {errorMessage ? <strong>Oops! {errorMessage}</strong> : null}
-      <MovieList setMovieDetails={setMovieDetails} movieList={movieList} />
+      <MovieList setMovieDetails={setMovieDetails} isLoading={isLoading}movieList={movieList} />
       <Movie movieDetails={movieDetails} onClose={() => setMovieDetails(null)}/>
     </div>
   );

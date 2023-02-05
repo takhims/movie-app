@@ -7,18 +7,23 @@ import {
   Divider,
   CardBody,
   Card,
+  Spinner
 } from "@chakra-ui/react";
 import React from "react";
 
 const MovieList = (props) => {
   // console.log(props.movieList)
   return (
+    <>
+    { !props.isLoading ?
     <div className="movie-container">
-      {props.movieList?.map((movie, index) => (
-        <div key={movie.imdbID} style={{gap: '20px'}}>
-          <Card maxW="sm">
-            <CardBody>
+       {props.movieList?.map((movie, index) => (
+        <div key={movie.imdbID} style={{width: '20%'}} >
+          <Card borderRadius="15px" transition='all 0.3s' maxW="sm" margin='10px' justifyContent='center' _hover={{transition: 'all 0.3s', transform: 'translateY(-20px)'}} >
+            <CardBody display='flex' flexDirection='column' alignItems='center'>
               <Image
+                height="300px"
+                width="200px"
                 src={movie.Poster}
                 alt="Green double couch with wooden legs"
                 borderRadius="lg"
@@ -41,8 +46,9 @@ const MovieList = (props) => {
             <Divider />
           </Card>
         </div>
-      ))}
-    </div>
+      ))}     
+    </div> : <Spinner size='xl' margin='15px'/>}</>
+
   );
 };
 
