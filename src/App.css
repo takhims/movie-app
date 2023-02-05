@@ -16,6 +16,10 @@ hr {
   }
 }
 
+.card {
+  width: 20%;
+}
+
 .movie-container {
   display: flex;
   justify-content: center;
@@ -23,6 +27,17 @@ hr {
   flex-direction: row !important;
   padding: 20px;
   flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .movie-container {
+    flex-direction: column !important;
+  }
+
+  .card {
+    width: 90%;
+  }
+
 }
 
 

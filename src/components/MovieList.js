@@ -18,7 +18,7 @@ const MovieList = (props) => {
     { !props.isLoading ?
     <div className="movie-container">
        {props.movieList?.map((movie, index) => (
-        <div key={movie.imdbID} style={{width: '20%'}} >
+        <div className="card" key={movie.imdbID}  >
           <Card borderRadius="15px" boxShadow="0px 0px 20px 1px rgb(0 0 0 / 20%)" transition='all 0.3s' maxW="sm" margin='10px' justifyContent='center' _hover={{transition: 'all 0.3s', transform: 'translateY(-20px)'}} >
             <CardBody display='flex' flexDirection='column' alignItems='center'>
               <Image

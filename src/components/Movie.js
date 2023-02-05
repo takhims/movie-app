@@ -18,6 +18,7 @@ export default function Movie(props) {
       <Modal
         blockScrollOnMount={false}
         isOpen={true}
+        margin="20px"
         onClose={props.onClose}
       >
         <ModalOverlay />

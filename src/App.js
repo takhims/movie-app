@@ -61,7 +61,8 @@ function App() {
   }, [sort]);
 
   const onChange = (e) => {
-    setSearchValue(e.target.value);
+    var temp = e.target.value
+    setSearchValue(temp.trim());
   };
 
   return (
